@@ -44,6 +44,32 @@ sap.ui.define([
 						oViewModel.setProperty("/delay", iOriginalBusyDelay);
 					}
 				);
+				//history model:		
+				this.historyModelCreation();
+
+			},
+			historyModelCreation: function(){
+				// HISTORY TABLE
+				var histJSONData = {
+					history: [{
+						version: "1.0",
+						validto: "31.12.9999",
+						validfrom: "01.01.2015",
+						respbuyer: " David",
+						cwh: "DEU, ESP, PAR",
+						approvers: "davisss ",
+						dateCreation: "01.01.2015"
+					}, {
+						version: "2.0",
+						validto: "31.12.9999",
+						validfrom: "01.01.2018",
+						respbuyer: " David",
+						cwh: "DEU, ESP, PAR",
+						approvers: "davisss ",
+						dateCreation: "01.01.2018"
+					}]
+				};
+				this.getView().setModel(new JSONModel(histJSONData), "hist");
 			},
 
 			/* =========================================================== */
