@@ -71,6 +71,23 @@ sap.ui.define([
 				};
 				this.getView().setModel(new JSONModel(histJSONData), "hist");
 			},
+			
+			processFlowModelCreation: function(){
+				// json: 
+				//{"nodes":[{"id":"1","lane":"0","title":"SalesOrder1","titleAbbreviation":"SO1","children":[2],"state":"Positive","stateText":"OKstatus","focused":true,"texts":["SalesOrderDocumentOverduelongtextforwrappingupallaspects","Notcleared"]},
+						// {"id":"2","lane":"0","title":"SalesOrder2","titleAbbreviation":"SO1","children":[21],"state":"Positive","stateText":"OKstatus","focused":true,"texts":["SalesOrderDocumentOverduelongtextforwrappingupallaspects","Notcleared"]},
+						// {"id":"21","lane":"2","title":"InvoicePlanned","titleAbbreviation":"IP","children":null,"state":"Planned","stateText":null,"focused":false,"texts":null}],
+				// "lanes":[{"id":"0","icon":"sap-icon://order-status","label":"InOrder","position":0},
+							//{"id":"1","icon":"sap-icon://monitor-payments","label":"InDelivery","position":1},
+							//{"id":"2","icon":"sap-icon://payment-approval","label":"InInvoice","position":2}]}
+			
+				
+				
+				
+			}, 
+			
+			
+			
 
 			/* =========================================================== */
 			/* event handlers                                              */
@@ -175,7 +192,66 @@ sap.ui.define([
 				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
 				oViewModel.setProperty("/shareSendEmailMessage",
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+			},
+			_getColorByState: function (oItem) {
+			switch (oItem.getState()) {
+				case "Error" : return "red";
+				case "Warning" : return "orange";
+				case "Success" : return "green";
 			}
+		},
+		itemPress: function (oEvent) {
+			var oItem = oEvent.getSource(),
+				aCustomData = oItem.getCustomData(),
+				sTitle = aCustomData[0].getValue(),
+				sIcon = aCustomData[1].getValue(),
+				sSubTitle = aCustomData[2].getValue(),
+				sDescription = aCustomData[3].getValue();
+
+			var oPopover = new sap.m.Popover({
+				contentWidth: "300px",
+				title: "Order status",
+				content: [
+					new sap.m.HBox({
+						items: [
+							new sap.ui.core.Icon({
+								src: sIcon,
+								color: this._getColorByState(oItem)
+							}).addStyleClass("sapUiSmallMarginBegin sapUiSmallMarginEnd"),
+							new sap.m.FlexBox({
+								width: "100%",
+								renderType: "Bare",
+								direction: "Column",
+								items: [new sap.m.Title({
+									level: sap.ui.core.TitleLevel.H1,
+									text: sTitle
+								}), new sap.m.Text({
+									text: sSubTitle
+								}).addStyleClass("sapUiSmallMarginBottom sapUiSmallMarginTop"),
+									new sap.m.Text({
+										text: sDescription
+									})
+								]
+							})
+						]
+					}).addStyleClass("sapUiTinyMargin")
+				],
+				footer: [
+					new sap.m.Toolbar({
+						content: [
+							new sap.m.ToolbarSpacer(),
+							new sap.m.Button({
+								text: "Close",
+								press: function() {
+									oPopover.close();
+								}
+							})]
+					})
+				]
+			});
+
+			oPopover.openBy(oEvent.getParameter("item"));
+		}
 
 		});
 
