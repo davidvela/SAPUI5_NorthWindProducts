@@ -3,12 +3,14 @@ sap.ui.define([
 		"test/testNorthProducts/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/routing/History",
-		"test/testNorthProducts/model/formatter"
+		"test/testNorthProducts/model/formatter", 
+		'sap/m/MessageToast'
 	], function (
 		BaseController,
 		JSONModel,
 		History,
-		formatter
+		formatter, 
+		MessageToast
 	) {
 		"use strict";
 
@@ -92,10 +94,11 @@ sap.ui.define([
 							{id:"3", icon:"sap-icon://approvals",			label:"PROD Implementation", position:3}
 						],
 					nodes: [	
-							{id:"0",lane:"0",title:"Published",    titleAbbreviation:"KPM", children:[1], state:"Positive", stateText:"David Vela -- 24.08.2019", focused:true, texts:["David Vela","24.08.2019"]},
-							{id:"1",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[2], state:"Positive", stateText:"OKstatus", focused:true, 	texts:["Comment1","Comment2"]},
-							{id:"2",lane:"1",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Negative", stateText:"Negative", focused:true, 	texts:["Comment1","Comment2"]},
-							{id:"3",lane:"1",title:"PCP Imp",	   titleAbbreviation:"PCP", children:[],  state:"Neutral",  stateText:"Neutral",  focused:true, 	texts:["Comment1","Comment2"]}
+							{id:"0",lane:"0",title:"Published",    titleAbbreviation:"KPM", children:[1], state:"Positive",    stateText:"David Vela -- 24.08.2019", focused:true, texts:["David Vela","24.08.2019"]},
+							{id:"1",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[2,21], state:"Positive", stateText:"OKstatus", focused:true, 	texts:["Comment1","Comment2"]},
+							{id:"2",lane:"2",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Negative",    stateText:"Negative", focused:true, 	texts:["Comment1","Comment2"]},
+							{id:"21",lane:"2",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Planned",     stateText:"Planned text", focused:true, 	texts:["Comment1","Comment2"]},
+							{id:"3",lane:"3",title:"PCP Imp",	   titleAbbreviation:"PCP", children:[],  state:"Neutral",     stateText:"Neutral",  focused:true, 	texts:["Comment1","Comment2"]}
 						] 	
 				};
 				this.getView().setModel(new JSONModel(data), "pflow");
@@ -266,7 +269,26 @@ sap.ui.define([
 				]
 			});
 
-			oPopover.openBy(oEvent.getParameter("item"));
+		oPopover.openBy(oEvent.getParameter("item"));
+		}, 
+				onOnError: function( event ) {
+			MessageToast.show("Exception occurred: " + event.getParameters().text);
+		},
+
+		onNodePress: function(event) {
+			MessageToast.show("Node " + event.getParameters().getNodeId() + " has been clicked.");
+		},
+
+		onZoomIn: function () {
+			this.oProcessFlow.zoomIn();
+
+			MessageToast.show("Zoom level changed to: " + this.oProcessFlow.getZoomLevel());
+		},
+
+		onZoomOut: function () {
+			this.oProcessFlow.zoomOut();
+
+			MessageToast.show("Zoom level changed to: " + this.oProcessFlow.getZoomLevel());
 		}
 
 		});

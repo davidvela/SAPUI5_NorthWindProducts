@@ -1,57 +1,57 @@
 <mvc:View controllerName="test.testNorthProducts.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
 	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
-	xmlns:comm="sap.suite.ui.commons" xmlns:t="sap.ui.table" 	xmlns:core="sap.ui.core">
+	xmlns:comm="sap.suite.ui.commons" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core">
 	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}"
 		busyIndicatorDelay="{objectView>/delay}">
 		<semantic:titleHeading>
 			<Title text="{Name}"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<!--<ObjectNumber number="{ path: 'Price', formatter: '.formatter.numberUnit' }" numberUnit="{Rating}"/>-->
-			<IconTabBar id="iconTabBarProgressFlow" class="sapUiResponsiveContentPadding" expandable="false" expanded="false">
-				<items>
-					<!--// <Text text=”{ parts : [ ‘var1’, ‘var2’ ], formatter: ‘.formatter.approverName’ }”/>-->
-					<!--iconColor="{ parts : [ {path: 'statusName'} , {value:5} ], formatter: '.formatter.statusIconTabProcess' }"/>-->
-					<IconTabFilter id="icf1" text="Draft date - person " tooltip="{i18n>detailIconTabBarDraft} + test 9292929292929292929292 -= end"
-						icon="sap-icon://edit"/>
-					<IconTabFilter id="icf2" text="Distributed date - person" tooltip="Distributed 01.01.2015 Herman Cassanova" icon="sap-icon://share-2"/>
-					<IconTabFilter id="icf3" text="Accepted date - person" tooltip="Accepted date - person" icon="sap-icon://process"/>
-					<IconTabFilter id="icf4" text="Implemented date - person" tooltip="Implemented date - person" icon="sap-icon://approvals"/>
-					<IconTabFilter id="icf5" text="Done date - person" tooltip="Done date - person" icon="sap-icon://complete"/>
-				</items>
-			</IconTabBar>
-			
-			<comm:MicroProcessFlow>
-		<comm:content>
-			<comm:MicroProcessFlowItem state="Error" press="itemPress">
-				<comm:customData>
-					<core:CustomData key="title" value="Shipping"/>
-					<core:CustomData key="icon" value="sap-icon://warning"/>
-					<core:CustomData key="subTitle" value="Overdue in 2 days"/>
-					<core:CustomData key="description"
-									 value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
-				</comm:customData>
-			</comm:MicroProcessFlowItem>
-			<comm:MicroProcessFlowItem state="Success" press="itemPress">
-				<comm:customData>
-					<core:CustomData key="title" value="Payment"/>
-					<core:CustomData key="icon" value="sap-icon://accept"/>
-					<core:CustomData key="subTitle" value="Payment successful"/>
-					<core:CustomData key="description" value="Lorem ipsum dolor sit amet."/>
-				</comm:customData>
-			</comm:MicroProcessFlowItem>
-			<comm:MicroProcessFlowItem state="Warning" press="itemPress">
-				<comm:customData>
-					<core:CustomData key="title" value="Shipping"/>
-					<core:CustomData key="icon" value="sap-icon://warning"/>
-					<core:CustomData key="subTitle" value="Complete in 15 hours"/>
-					<core:CustomData key="description"
-									 value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
-				</comm:customData>
-			</comm:MicroProcessFlowItem>
-		</comm:content>
-	</comm:MicroProcessFlow>
-			
+			<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+				<!--<ObjectNumber number="{ path: 'Price', formatter: '.formatter.numberUnit' }" numberUnit="{Rating}"/>-->
+				<IconTabBar id="iconTabBarProgressFlow" class="sapUiResponsiveContentPadding" expandable="false" expanded="false">
+					<items>
+						<!--// <Text text=”{ parts : [ ‘var1’, ‘var2’ ], formatter: ‘.formatter.approverName’ }”/>-->
+						<!--iconColor="{ parts : [ {path: 'statusName'} , {value:5} ], formatter: '.formatter.statusIconTabProcess' }"/>-->
+						<IconTabFilter id="icf1" text="Draft date - person " tooltip="{i18n>detailIconTabBarDraft} + test 9292929292929292929292 -= end"
+							icon="sap-icon://edit"/>
+						<IconTabFilter id="icf2" text="Distributed date - person" tooltip="Distributed 01.01.2015 Herman Cassanova" icon="sap-icon://share-2"/>
+						<IconTabFilter id="icf3" text="Accepted date - person" tooltip="Accepted date - person" icon="sap-icon://process"/>
+						<IconTabFilter id="icf4" text="Implemented date - person" tooltip="Implemented date - person" icon="sap-icon://approvals"/>
+						<IconTabFilter id="icf5" text="Done date - person" tooltip="Done date - person" icon="sap-icon://complete"/>
+					</items>
+				</IconTabBar>
+				<comm:MicroProcessFlow>
+					<comm:content>
+						<comm:MicroProcessFlowItem state="Error" press="itemPress">
+							<comm:customData>
+								<core:CustomData key="title" value="Shipping"/>
+								<core:CustomData key="icon" value="sap-icon://warning"/>
+								<core:CustomData key="subTitle" value="Overdue in 2 days"/>
+								<core:CustomData key="description"
+									value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
+							</comm:customData>
+						</comm:MicroProcessFlowItem>
+						<comm:MicroProcessFlowItem state="Success" press="itemPress">
+							<comm:customData>
+								<core:CustomData key="title" value="Payment"/>
+								<core:CustomData key="icon" value="sap-icon://accept"/>
+								<core:CustomData key="subTitle" value="Payment successful"/>
+								<core:CustomData key="description" value="Lorem ipsum dolor sit amet."/>
+							</comm:customData>
+						</comm:MicroProcessFlowItem>
+						<comm:MicroProcessFlowItem state="Warning" press="itemPress">
+							<comm:customData>
+								<core:CustomData key="title" value="Shipping"/>
+								<core:CustomData key="icon" value="sap-icon://warning"/>
+								<core:CustomData key="subTitle" value="Complete in 15 hours"/>
+								<core:CustomData key="description"
+									value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
+							</comm:customData>
+						</comm:MicroProcessFlowItem>
+					</comm:content>
+				</comm:MicroProcessFlow>
+			</VBox>
 		</semantic:headerContent>
 		<semantic:content>
 			<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
@@ -165,8 +165,8 @@
 				<!--</l:VerticalLayout>-->
 				<comm:ProcessFlow id="processflow" scrollable="false" nodePress="onNodePress" nodes="{pflow>/nodes}" lanes="{pflow>/lanes}">
 					<comm:nodes>
-						<comm:ProcessFlowNode laneId="{pflow>lane}" nodeId="{pflow>id}" title="{title}" titleAbbreviation="{pflow>titleAbbreviation}" children="{pflow>children}" state="{pflow>state}"
-							stateText="{pflow>stateText}" texts="{pflow>texts}" focused="{pflow>focused}"/>
+						<comm:ProcessFlowNode laneId="{pflow>lane}" nodeId="{pflow>id}" title="{title}" titleAbbreviation="{pflow>titleAbbreviation}"
+							children="{pflow>children}" state="{pflow>state}" stateText="{pflow>stateText}" texts="{pflow>texts}" focused="{pflow>focused}"/>
 					</comm:nodes>
 					<comm:lanes>
 						<comm:ProcessFlowLaneHeader laneId="{pflow>id}" iconSrc="{pflow>icon}" text="{pflow>label}" position="{pflow>position}"/>
