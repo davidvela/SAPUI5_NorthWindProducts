@@ -1,18 +1,178 @@
 <mvc:View controllerName="test.testNorthProducts.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar">
+	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:comm="sap.suite.ui.commons" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core">
 	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}"
 		busyIndicatorDelay="{objectView>/delay}">
 		<semantic:titleHeading>
 			<Title text="{Name}"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<ObjectNumber number="{ path: 'Price', formatter: '.formatter.numberUnit' }" numberUnit="{Rating}"/>
+			<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+				<!--<ObjectNumber number="{ path: 'Price', formatter: '.formatter.numberUnit' }" numberUnit="{Rating}"/>-->
+				<IconTabBar id="iconTabBarProgressFlow" class="sapUiResponsiveContentPadding" expandable="false" expanded="false">
+					<items>
+						<!--// <Text text=”{ parts : [ ‘var1’, ‘var2’ ], formatter: ‘.formatter.approverName’ }”/>-->
+						<!--iconColor="{ parts : [ {path: 'statusName'} , {value:5} ], formatter: '.formatter.statusIconTabProcess' }"/>-->
+						<IconTabFilter id="icf1" text="Draft date - person " tooltip="{i18n>detailIconTabBarDraft} + test 9292929292929292929292 -= end"
+							icon="sap-icon://edit"/>
+						<IconTabFilter id="icf2" text="Distributed date - person" tooltip="Distributed 01.01.2015 Herman Cassanova" icon="sap-icon://share-2"/>
+						<IconTabFilter id="icf3" text="Accepted date - person" tooltip="Accepted date - person" icon="sap-icon://process"/>
+						<IconTabFilter id="icf4" text="Implemented date - person" tooltip="Implemented date - person" icon="sap-icon://approvals"/>
+						<IconTabFilter id="icf5" text="Done date - person" tooltip="Done date - person" icon="sap-icon://complete"/>
+					</items>
+				</IconTabBar>
+				<comm:MicroProcessFlow>
+					<comm:content>
+						<comm:MicroProcessFlowItem state="Error" press="itemPress">
+							<comm:customData>
+								<core:CustomData key="title" value="Shipping"/>
+								<core:CustomData key="icon" value="sap-icon://warning"/>
+								<core:CustomData key="subTitle" value="Overdue in 2 days"/>
+								<core:CustomData key="description"
+									value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
+							</comm:customData>
+						</comm:MicroProcessFlowItem>
+						<comm:MicroProcessFlowItem state="Success" press="itemPress">
+							<comm:customData>
+								<core:CustomData key="title" value="Payment"/>
+								<core:CustomData key="icon" value="sap-icon://accept"/>
+								<core:CustomData key="subTitle" value="Payment successful"/>
+								<core:CustomData key="description" value="Lorem ipsum dolor sit amet."/>
+							</comm:customData>
+						</comm:MicroProcessFlowItem>
+						<comm:MicroProcessFlowItem state="Warning" press="itemPress">
+							<comm:customData>
+								<core:CustomData key="title" value="Shipping"/>
+								<core:CustomData key="icon" value="sap-icon://warning"/>
+								<core:CustomData key="subTitle" value="Complete in 15 hours"/>
+								<core:CustomData key="description"
+									value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
+							</comm:customData>
+						</comm:MicroProcessFlowItem>
+					</comm:content>
+				</comm:MicroProcessFlow>
+			</VBox>
 		</semantic:headerContent>
 		<semantic:content>
-			<Button text="test"/>
-
-	
-			
+			<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+				<!--BUTTON -->
+				<Button text="test"/>
+				<!-- ICON TAB BAR -->
+				<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" text="Information" tooltip="{i18n>detailIconTabBarInfo}"></IconTabFilter>
+						<IconTabFilter id="iconTabBarFilter4" icon="sap-icon://feed" text="Feed" tooltip="{i18n>detailIconTabBarFeed}">
+							<FeedInput post="onPost" icon="sap-icon://employee" class="sapUiSmallMarginTopBottom"/>
+							<List id="feedListID" showSeparators="Inner" items="{commentSet}">
+								<FeedListItem sender="{Author}" icon="{AuthorPicUrl}" iconDensityAware="false" senderPress="onSenderPress" iconPress="onIconPress"
+									info="{Type}" text="{text}" convertLinksToAnchorTags="All" timestamp="{fDate}"/>
+							</List>
+						</IconTabFilter>
+						<IconTabFilter id="iconTabBarFilter3" icon="sap-icon://process" text="History" tooltip="{i18n>detailIconTabBarHistory}">
+							<!--history-->
+							<Table id="idHistory" inset="false" items="{ path: 'hist>/history/' }">
+								<headerToolbar>
+									<OverflowToolbar>
+										<content><Title text="History" level="H2"/></content>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<!--Tablet Phone Desktop-->
+									<Column minScreenWidth="Phone" demandPopin="true" width="5%"><Text text="#"/></Column>
+									<Column minScreenWidth="Phone" demandPopin="true" width="10%"><Text text="Valid From"/></Column>
+									<Column minScreenWidth="Phone" demandPopin="true" width="10%"><Text text="valid to"/></Column>
+									<Column minScreenWidth="Phone" demandPopin="true" width="10%"><Text text="Creator"/></Column>
+									<Column minScreenWidth="Phone" demandPopin="true" width="10%"><Text text="Date of Creation"/></Column>
+									<Column minScreenWidth="Phone" demandPopin="true" width="10%"><Text text="CWH"/></Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" width="10%"><Text text="Published by"/></Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" width="10%"><Text text="on"/></Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" width="10%"><Text text="Implemented on"/></Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" width="15%"><Text text="Status"/></Column>
+								</columns>
+								<items>
+									<ColumnListItem vAlign="Middle" type="Inactive" press="handleItemPress">
+										<cells>
+											<Text text="{hist>version}"/>
+											<Text
+												text="{ path: 'validfrom', type: 'sap.ui.model.odata.type.DateTime', constraints:{displayFormat:'Date'}, formatOptions:{pattern: 'dd-MM-yyyy'} }"/>
+											<Text
+												text="{ path: 'validto', type: 'sap.ui.model.odata.type.DateTime', constraints:{displayFormat:'Date'}, formatOptions:{pattern: 'dd-MM-yyyy'} }"/>
+											<Text text="{creator}"/>
+											<Text
+												text="{ path: 'dateCreation', type: 'sap.ui.model.odata.type.DateTime', constraints:{displayFormat:'Date'}, formatOptions:{pattern: 'dd-MM-yyyy'} }"/>
+											<Text text="{cwh}"/>
+											<Text text="{published_by}"/>
+											<Text
+												text="{ path: 'published_on', type: 'sap.ui.model.odata.type.DateTime', constraints:{displayFormat:'Date'}, formatOptions:{pattern: 'dd-MM-yyyy'} }"/>
+											<Text
+												text="{ path: 'implemented_on', type: 'sap.ui.model.odata.type.DateTime', constraints:{displayFormat:'Date'}, formatOptions:{pattern: 'dd-MM-yyyy'} }"/>
+											<ObjectStatus text="{vstatus}" state="{ path: 'vstatus', formatter: '.formatter.status' }"/>
+											<!--<Text text="{approvers}"/>-->
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+				<!--STATUS-->
+				<!--<l:VerticalLayout class="sapUiContentPadding" width="100%">-->
+				<!--	<l:HorizontalLayout class="sapUiContentPadding">-->
+				<!--		<comm:ProcessFlow id="processflow2" scrollable="true" wheelZoomable="true" foldedCorners="true" showLabels="false" nodePress="onNodePress">-->
+				<!--			<comm:lanes>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id01" text="DRAFT" position="0" iconSrc="sap-icon://edit"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id02" text="PUBLISHED" position="1" iconSrc="sap-icon://share-2"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id03" text="ACKNOWLEDGED" position="2" iconSrc="sap-icon://process"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id04" text="IMPLEMENTED" position="3" iconSrc="sap-icon://approvals"/>-->
+				<!--			</comm:lanes>-->
+				<!--			<comm:nodes>-->
+				<!--				<comm:ProcessFlowNode nodeId="01" laneId="id01" title="Draft" titleAbbreviation="ED" isTitleClickable="true" children="02" state="Positive"-->
+				<!--					stateText="22.02.2019 - " texts=""/>-->
+				<!--				<comm:ProcessFlowNode nodeId="02" laneId="id02" title="Distributed" titleAbbreviation="AS" isTitleClickable="true" children="03,31"-->
+				<!--					state="Positive" stateText="22.02.2019 - " texts="the request arrived to the system"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="31" laneId="id03" title="KG2" titleAbbreviation="CF2" isTitleClickable="true" children="04" state="Neutral"-->
+				<!--					stateText="25.02.2019 -" texts="waiting for document B"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="03" laneId="id03" title="Accepted" titleAbbreviation="CFO" isTitleClickable="true" children="04"-->
+				<!--					state="Negative" stateText="25.02.2019 - davd" texts="missing document A"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="04" laneId="id04" title="Implemented" titleAbbreviation="MKL" isTitleClickable="true" state="Neutral"/>-->
+				<!--			</comm:nodes>-->
+				<!--		</comm:ProcessFlow>-->
+				<!--	</l:HorizontalLayout>-->
+				<!--</l:VerticalLayout>-->
+				<!--Dynamic STATUS-->
+				<!--<l:VerticalLayout class="sapUiContentPadding" width="100%">-->
+				<!--	<l:HorizontalLayout class="sapUiContentPadding">-->
+				<!--		<comm:ProcessFlow id="processflow2" scrollable="true" wheelZoomable="true" foldedCorners="true" showLabels="false" nodePress="onNodePress">-->
+				<!--			<comm:lanes>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id1" text="DRAFT" position="0" iconSrc="sap-icon://edit"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id2" text="PUBLISHED" position="1" iconSrc="sap-icon://share-2"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id3" text="ACKNOWLEDGED" position="2" iconSrc="sap-icon://process"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id4" text="IMPLEMENTED" position="3" iconSrc="sap-icon://approvals"/>-->
+				<!--			</comm:lanes>-->
+				<!--			<comm:nodes>-->
+				<!--				<comm:ProcessFlowNode nodeId="01" laneId="id01" title="Draft" titleAbbreviation="ED" isTitleClickable="true" children="02" state="Positive"-->
+				<!--					stateText="22.02.2019 - velatida" texts=""/>-->
+				<!--				<comm:ProcessFlowNode nodeId="02" laneId="id02" title="Distributed" titleAbbreviation="AS" isTitleClickable="true" children="03,31"-->
+				<!--					state="Positive" stateText="22.02.2019 - velatida" texts="the request arrived to the system"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="31" laneId="id03" title="KG2" titleAbbreviation="CF2" isTitleClickable="true" children="04" state="Neutral"-->
+				<!--					stateText="25.02.2019 - Bukcro" texts="waiting for document B"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="03" laneId="id03" title="Accepted" titleAbbreviation="CFO" isTitleClickable="true" children="04"-->
+				<!--					state="Negative" stateText="25.02.2019 - katzeran" texts="missing document A"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="04" laneId="id04" title="Implemented" titleAbbreviation="MKL" isTitleClickable="true" state="Neutral"/>-->
+				<!--			</comm:nodes>-->
+				<!--		</comm:ProcessFlow>-->
+				<!--	</l:HorizontalLayout>-->
+				<!--</l:VerticalLayout>-->
+				<comm:ProcessFlow id="processflow" scrollable="false" nodePress="onNodePress" nodes="{pflow>/nodes}" lanes="{pflow>/lanes}">
+					<comm:nodes>
+						<comm:ProcessFlowNode laneId="{pflow>lane}" nodeId="{pflow>id}" title="{title}" titleAbbreviation="{pflow>titleAbbreviation}"
+							children="{pflow>children}" state="{pflow>state}" stateText="{pflow>stateText}" texts="{pflow>texts}" focused="{pflow>focused}"/>
+					</comm:nodes>
+					<comm:lanes>
+						<comm:ProcessFlowLaneHeader laneId="{pflow>id}" iconSrc="{pflow>icon}" text="{pflow>label}" position="{pflow>position}"/>
+					</comm:lanes>
+				</comm:ProcessFlow>
+			</VBox>
 		</semantic:content>
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>

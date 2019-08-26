@@ -15,7 +15,17 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/metadata.xml",
+					"annotations": [
+						"NorthwindAnnotation"
+					]
+				}
+			},
+			"NorthwindAnnotation": {
+				"type": "ODataAnnotation",
+				"uri": "NorthwindAnnotation.xml",
+				"settings": {
+					"localUri": "NorthwindAnnotation.xml"
 				}
 			}
 		},
@@ -50,13 +60,16 @@
 		"dependencies": {
 			"minUI5Version": "1.42.0",
 			"libs": {
-				"sap.ui.core": {},
-				"sap.m": {},
-				"sap.f": {},
-				"sap.ushell": {},
 				"sap.collaboration": {
 					"lazy": true
-				}
+				},
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.comp": {
+					"minVersion": ""
+				},
+				"sap.ui.core": {},
+				"sap.ushell": {}
 			}
 		},
 		"contentDensities": {
@@ -73,6 +86,10 @@
 			"": {
 				"dataSource": "mainService",
 				"preload": true
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
 			}
 		},
 		"services": {
@@ -112,6 +129,15 @@
 					"target": [
 						"object"
 					]
+				},
+				{
+					"name": "WorklistSmart",
+					"pattern": "WorklistSmart",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"worklistSmart"
+					]
 				}
 			],
 			"targets": {
@@ -134,6 +160,15 @@
 				"notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound"
+				},
+				"worklistSmart": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "WorklistSmart",
+					"title": "worklistSmart",
+					"viewId": "WorklistSmart",
+					"viewLevel": 2
 				}
 			}
 		}

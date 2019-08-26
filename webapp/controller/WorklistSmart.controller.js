@@ -1,6 +1,12 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+		"sap/ui/core/mvc/Controller",
+		"test/testNorthProducts/controller/BaseController",
+		"sap/ui/model/json/JSONModel",
+		"sap/ui/core/routing/History",
+		"test/testNorthProducts/model/formatter",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator"
+	], function (Controller, BaseController, JSONModel, History, formatter, Filter, FilterOperator) {
 	"use strict";
 
 	return Controller.extend("test.testNorthProducts.controller.WorklistSmart", {
@@ -11,6 +17,8 @@ sap.ui.define([
 		 * @memberOf test.testNorthProducts.view.WorklistSmart
 		 */
 		onInit: function () {
+				 var oModel = sap.ui.getCore().getModel();
+				 this.getView().setModel(oModel);
 
 		},
 	onNavBack: function () {
@@ -36,6 +44,9 @@ sap.ui.define([
 				//this.getRouter().navTo("master", {}, bReplace);
 				this.getOwnerComponent().getRouter().navTo("TargetView1", { }, bReplace);
 			}
+		}, 
+		test: function(){
+			debugger;
 		}
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
