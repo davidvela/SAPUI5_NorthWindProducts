@@ -8,14 +8,16 @@
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="testNorthProducts.NorthwindAnnotation.ODataDemo">
 			<Annotations Target="Metadata.Product">
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>ID</PropertyPath>
+						<PropertyPath>Name</PropertyPath>
+					</Collection>
+				</Annotation>
 				<Annotation Term="UI.LineItem">
 					<Collection>
-						<Record Type="UI.DataField">
-							<PropertyValue Property="Value" Path="ID"/>
-						</Record>
-						<Record Type="UI.DataField">
-							<PropertyValue Property="Value" Path="Name"/>
-						</Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="ID"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="Name"/></Record>
 					</Collection>
 				</Annotation>
 			</Annotations>

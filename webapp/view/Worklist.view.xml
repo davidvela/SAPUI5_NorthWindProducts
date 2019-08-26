@@ -1,75 +1,81 @@
-<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" controllerName="test.testNorthProducts.controller.Worklist">
-
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable"
+	controllerName="test.testNorthProducts.controller.Worklist">
 	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
-
 		<semantic:titleHeading>
 			<Title text="{i18n>worklistTitle}"/>
 		</semantic:titleHeading>
-
 		<semantic:content>
-						<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-
-			<Table id="table" width="auto" items="{      path: '/Products',      sorter: {       path: 'Name',       descending: false      }     }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished">
-
-				<headerToolbar>
-					<Toolbar>
-						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
-						<ToolbarSpacer/>
-						<Button text="WorklistSmart" press="onWorklistSmart"/>
-						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto">
-						</SearchField>
-					</Toolbar>
-				</headerToolbar>
-
-				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
-					</Column>
-					<Column id="unitNumberColumn" hAlign="End">
-						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
-					</Column>
-					<Column id="column0">
-					    <header>
-					        <Label text="Release Date" id="label0"/>
-					    </header>
-					</Column>
-					<Column id="column0_1550236355349">
-					    <header>
-					        <Label text="ID" id="label0_1550236355418"/>
-					    </header>
-					</Column>
-				</columns>
-
-				<items>
-					<ColumnListItem type="Navigation" press="onPress">
-						<cells>
-							<ObjectIdentifier title="{Name}"/>
-							<ObjectNumber number="{          path: 'Price',          formatter: '.formatter.numberUnit'         }" unit="{Rating}"/>
-							<DatePicker value="{ReleaseDate}" width="100%" id="picker0"/>
-							<Input value="{ID}" width="100%" id="input0"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-			
-					             <smartTable:SmartTable entitySet="Products" smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true" useVariantManagement="false" useTablePersonalisation="true" header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"/>	
-			
-						</VBox>
-
+			<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+				<Table id="table" width="auto" items="{ path: '/Products', sorter: { path: 'Name', descending: false } }"
+					noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+					updateFinished="onUpdateFinished">
+					<headerToolbar>
+						<Toolbar>
+							<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+							<ToolbarSpacer/>
+							<Button text="WorklistSmart" press="onWorklistSmart"/>
+							<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column id="nameColumn">
+							<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+						</Column>
+						<Column id="unitNumberColumn" hAlign="End">
+							<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+						</Column>
+						<Column id="column0">
+							<header>
+								<Label text="Release Date" id="label0"/>
+							</header>
+						</Column>
+						<Column id="column0_1550236355349">
+							<header>
+								<Label text="ID" id="label0_1550236355418"/>
+							</header>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" press="onPress">
+							<cells>
+								<ObjectIdentifier title="{Name}"/>
+								<ObjectNumber number="{ path: 'Price', formatter: '.formatter.numberUnit' }" unit="{Rating}"/>
+								<DatePicker value="{ReleaseDate}" width="100%" id="picker0"/>
+								<Input value="{ID}" width="100%" id="input0"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<smartFilterBar:SmartFilterBar class="sapContrastPlus"
+					smartVariant="Element sap.ui.comp.smartvariants.SmartVariantManagement#__bar0-variant" hSpacing="0" 
+					 id="bar0" entityType="Product">
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration id="configuration0"/>
+					</smartFilterBar:controlConfiguration>
+				</smartFilterBar:SmartFilterBar>
+				<!--<smartFilterBar:SmartFilterBar		id="__bar1" -->
+				<!--											liveMode="true" -->
+				<!--											showClearButton="true" -->
+				<!--											showClearOnFB="true">-->
+				<!--    <smartFilterBar:controlConfiguration><sap.ui.comp.smartfilterbar:ControlConfiguration id="__configuration0"/>-->
+				<!--    </smartFilterBar:controlConfiguration>-->
+				<!--</smartFilterBar:SmartFilterBar>-->
+				<smartTable:SmartTable entitySet="Products"  tableType="Table" useExportToExcel="true"
+						smartFilterId="bar0" 
+					useVariantManagement="false" useTablePersonalisation="true" header="Line Items" showRowCount="true"
+					persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"/>
+				<items/>
+			</VBox>
 		</semantic:content>
-
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
 		</semantic:sendEmailAction>
-
 		<semantic:shareInJamAction>
 			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
 		</semantic:shareInJamAction>
-
 		<semantic:saveAsTileAction>
 			<footerbar:AddBookmarkButton id="shareTile" title="{worklistView>/saveAsTileTitle}"/>
 		</semantic:saveAsTileAction>
-
 	</semantic:SemanticPage>
-
 </mvc:View>
