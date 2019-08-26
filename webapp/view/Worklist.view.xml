@@ -1,4 +1,4 @@
-<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="test.testNorthProducts.controller.Worklist">
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" controllerName="test.testNorthProducts.controller.Worklist">
 
 	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
 
@@ -7,13 +7,15 @@
 		</semantic:titleHeading>
 
 		<semantic:content>
+						<VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+
 			<Table id="table" width="auto" items="{      path: '/Products',      sorter: {       path: 'Name',       descending: false      }     }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished">
 
 				<headerToolbar>
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer/>
-						<Button text="WorklistSmart" press="onWorklistSmart" />
+						<Button text="WorklistSmart" press="onWorklistSmart"/>
 						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto">
 						</SearchField>
 					</Toolbar>
@@ -49,6 +51,11 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+			
+					             <smartTable:SmartTable entitySet="Products" smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true" useVariantManagement="false" useTablePersonalisation="true" header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"/>	
+			
+						</VBox>
+
 		</semantic:content>
 
 		<semantic:sendEmailAction>

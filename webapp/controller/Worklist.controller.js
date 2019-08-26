@@ -89,6 +89,7 @@ sap.ui.define([
 			},
 		onWorklistSmart : function (oEvent) {
 				// The source is the list item that got pressed
+				 sap.ui.getCore().setModel(this.getView().getModel());
 			this.getRouter().navTo("WorklistSmart", {
 					// objectId: oItem.getBindingContext().getProperty("ID")
 				});			},
