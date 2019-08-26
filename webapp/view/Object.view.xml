@@ -116,29 +116,29 @@
 					</items>
 				</IconTabBar>
 				<!--STATUS-->
-				<l:VerticalLayout class="sapUiContentPadding" width="100%">
-					<l:HorizontalLayout class="sapUiContentPadding">
-						<comm:ProcessFlow id="processflow2" scrollable="true" wheelZoomable="true" foldedCorners="true" showLabels="false" nodePress="onNodePress">
-							<comm:lanes>
-								<comm:ProcessFlowLaneHeader laneId="id01" text="DRAFT" position="0" iconSrc="sap-icon://edit"/>
-								<comm:ProcessFlowLaneHeader laneId="id02" text="PUBLISHED" position="1" iconSrc="sap-icon://share-2"/>
-								<comm:ProcessFlowLaneHeader laneId="id03" text="ACKNOWLEDGED" position="2" iconSrc="sap-icon://process"/>
-								<comm:ProcessFlowLaneHeader laneId="id04" text="IMPLEMENTED" position="3" iconSrc="sap-icon://approvals"/>
-							</comm:lanes>
-							<comm:nodes>
-								<comm:ProcessFlowNode nodeId="01" laneId="id01" title="Draft" titleAbbreviation="ED" isTitleClickable="true" children="02" state="Positive"
-									stateText="22.02.2019 - velatida" texts=""/>
-								<comm:ProcessFlowNode nodeId="02" laneId="id02" title="Distributed" titleAbbreviation="AS" isTitleClickable="true" children="03,31"
-									state="Positive" stateText="22.02.2019 - velatida" texts="the request arrived to the system"/>
-								<comm:ProcessFlowNode nodeId="31" laneId="id03" title="KG2" titleAbbreviation="CF2" isTitleClickable="true" children="04" state="Neutral"
-									stateText="25.02.2019 - Bukcro" texts="waiting for document B"/>
-								<comm:ProcessFlowNode nodeId="03" laneId="id03" title="Accepted" titleAbbreviation="CFO" isTitleClickable="true" children="04"
-									state="Negative" stateText="25.02.2019 - katzeran" texts="missing document A"/>
-								<comm:ProcessFlowNode nodeId="04" laneId="id04" title="Implemented" titleAbbreviation="MKL" isTitleClickable="true" state="Neutral"/>
-							</comm:nodes>
-						</comm:ProcessFlow>
-					</l:HorizontalLayout>
-				</l:VerticalLayout>
+				<!--<l:VerticalLayout class="sapUiContentPadding" width="100%">-->
+				<!--	<l:HorizontalLayout class="sapUiContentPadding">-->
+				<!--		<comm:ProcessFlow id="processflow2" scrollable="true" wheelZoomable="true" foldedCorners="true" showLabels="false" nodePress="onNodePress">-->
+				<!--			<comm:lanes>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id01" text="DRAFT" position="0" iconSrc="sap-icon://edit"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id02" text="PUBLISHED" position="1" iconSrc="sap-icon://share-2"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id03" text="ACKNOWLEDGED" position="2" iconSrc="sap-icon://process"/>-->
+				<!--				<comm:ProcessFlowLaneHeader laneId="id04" text="IMPLEMENTED" position="3" iconSrc="sap-icon://approvals"/>-->
+				<!--			</comm:lanes>-->
+				<!--			<comm:nodes>-->
+				<!--				<comm:ProcessFlowNode nodeId="01" laneId="id01" title="Draft" titleAbbreviation="ED" isTitleClickable="true" children="02" state="Positive"-->
+				<!--					stateText="22.02.2019 - velatida" texts=""/>-->
+				<!--				<comm:ProcessFlowNode nodeId="02" laneId="id02" title="Distributed" titleAbbreviation="AS" isTitleClickable="true" children="03,31"-->
+				<!--					state="Positive" stateText="22.02.2019 - velatida" texts="the request arrived to the system"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="31" laneId="id03" title="KG2" titleAbbreviation="CF2" isTitleClickable="true" children="04" state="Neutral"-->
+				<!--					stateText="25.02.2019 - Bukcro" texts="waiting for document B"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="03" laneId="id03" title="Accepted" titleAbbreviation="CFO" isTitleClickable="true" children="04"-->
+				<!--					state="Negative" stateText="25.02.2019 - katzeran" texts="missing document A"/>-->
+				<!--				<comm:ProcessFlowNode nodeId="04" laneId="id04" title="Implemented" titleAbbreviation="MKL" isTitleClickable="true" state="Neutral"/>-->
+				<!--			</comm:nodes>-->
+				<!--		</comm:ProcessFlow>-->
+				<!--	</l:HorizontalLayout>-->
+				<!--</l:VerticalLayout>-->
 				<!--Dynamic STATUS-->
 				<!--<l:VerticalLayout class="sapUiContentPadding" width="100%">-->
 				<!--	<l:HorizontalLayout class="sapUiContentPadding">-->
