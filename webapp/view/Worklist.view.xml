@@ -13,6 +13,7 @@
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer/>
+						<Button text="WorklistSmart" press="onWorklistSmart" />
 						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto">
 						</SearchField>
 					</Toolbar>

@@ -87,7 +87,11 @@ sap.ui.define([
 				}
 				this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			},
-
+		onWorklistSmart : function (oEvent) {
+				// The source is the list item that got pressed
+			this.getRouter().navTo("WorklistSmart", {
+					// objectId: oItem.getBindingContext().getProperty("ID")
+				});			},
 			/**
 			 * Event handler when a table item gets pressed
 			 * @param {sap.ui.base.Event} oEvent the table selectionChange event
