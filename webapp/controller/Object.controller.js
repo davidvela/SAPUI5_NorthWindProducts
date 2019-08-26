@@ -46,6 +46,8 @@ sap.ui.define([
 				);
 				//history model:		
 				this.historyModelCreation();
+				//Process Flow: 
+				this.processFlowModelCreation();
 
 			},
 			historyModelCreation: function(){
@@ -82,8 +84,22 @@ sap.ui.define([
 							//{"id":"2","icon":"sap-icon://payment-approval","label":"InInvoice","position":2}]}
 			
 				
-				
-				
+				var data = {
+					lanes:[ 
+							{id:"0", icon:"sap-icon://share-2",				label:"Published",			 position:0},
+							{id:"1", icon:"sap-icon://employee-approvals",	label:"Aprobed",			 position:1},
+							{id:"2", icon:"sap-icon://process",				label:"QUAL Implementation", position:2},
+							{id:"3", icon:"sap-icon://approvals",			label:"PROD Implementation", position:3}
+						],
+					nodes: [	
+							{id:"0",lane:"0",title:"Published",    titleAbbreviation:"KPM", children:[1], state:"Positive", stateText:"David Vela -- 24.08.2019", focused:true, texts:["David Vela","24.08.2019"]},
+							{id:"1",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[2], state:"Positive", stateText:"OKstatus", focused:true, 	texts:["Comment1","Comment2"]},
+							{id:"2",lane:"1",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Negative", stateText:"Negative", focused:true, 	texts:["Comment1","Comment2"]},
+							{id:"3",lane:"1",title:"PCP Imp",	   titleAbbreviation:"PCP", children:[],  state:"Neutral",  stateText:"Neutral",  focused:true, 	texts:["Comment1","Comment2"]}
+						] 	
+				};
+				this.getView().setModel(new JSONModel(data), "pflow");
+
 			}, 
 			
 			
