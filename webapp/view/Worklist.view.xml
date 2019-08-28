@@ -64,7 +64,21 @@
 				<smartTable:SmartTable entitySet="Products"  tableType="Table" useExportToExcel="true"
 						smartFilterId="bar0" 
 					useVariantManagement="false" useTablePersonalisation="true" header="Line Items" showRowCount="true"
-					persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"/>
+					persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true">
+							<Table growingThreshold="5" growingTriggerText="test" sticky="ColumnHeaders" alternateRowColors="true">
+								<ColumnListItem type="Navigation" press=".onPress">
+									<cells>
+								<ObjectIdentifier title="{Name}"/>
+								<ObjectNumber number="{ path: 'Price', formatter: '.formatter.numberUnit' }" unit="{Rating}"/>
+								<DatePicker value="{ReleaseDate}" width="100%"/>
+								<Input value="{ID}" width="100%" />
+							</cells>
+								</ColumnListItem>
+							</Table>
+							<smartTable:layoutData>
+								<FlexItemData growFactor="1" baseSize="0%"/>
+							</smartTable:layoutData>
+				</smartTable:SmartTable>
 				<items/>
 			</VBox>
 		</semantic:content>
