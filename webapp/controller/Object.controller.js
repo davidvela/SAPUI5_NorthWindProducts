@@ -141,7 +141,7 @@ sap.ui.define([
 				var logic = function(){
 						var dataBE = {
 								table : [
-											{ id: 0 ,	abbreviation: "KPM", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
+											{ id: 0 , abbreviation: "KPM", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
 											{ id: 1 , abbreviation: "ZBM", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
 											{ id: 2 , abbreviation: "PCQ", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
 											{ id: 3 , abbreviation: "PCP", state : "Neutral",  stateText:"David Vela -- " } 
@@ -157,18 +157,20 @@ sap.ui.define([
 											state:row.state,     
 											stateText:row.stateText,	
 											focused:true };
-							var oLane = {   id:row.id,					icon:"sap-icon://share-2",				
-											label:"KPL Published ",			 
+							var oLane = {   id:row.id,					
+											icon:"",				
+											label:"",			 
 											position:row.id,};
 											
 							switch (row.abbreviation) {
-								case "KPM": 
-									
-									break;
-								default:
-								continue; 
+								case "KPM": oLane.icon = "sap-icon://share-2"; oLane.label ="KPL Publication"; oNode.children.push(row.id+1);	break;
+								case "ZBM": oLane.icon = "sap-icon://employee-approvals"; oLane.label ="ZBM Approval"; 	oNode.children.push(row.id+1); break;
+								case "PCQ": oLane.icon = "sap-icon://process"; oLane.label ="QUAL Implementation"; 	oNode.children.push(row.id+1); break;
+								case "PCP": oLane.icon = "sap-icon://approvals"; oLane.label ="PROD Implementation"; 	break;
+								default: continue; 
 							}
-							aNodes.append(oNode );
+							aNodes.push(oNode );
+							aLanes.push(oLane );
 							
 						}
 						return { lanes:aLanes, nodes : aNodes };
@@ -177,7 +179,7 @@ sap.ui.define([
 				var data4 = logic(); 
 				
 				
-				this.getView().setModel(new JSONModel(data3), "pflow");
+				this.getView().setModel(new JSONModel(data4), "pflow");
 
 			}, 
 			
