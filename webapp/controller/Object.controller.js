@@ -141,7 +141,7 @@ sap.ui.define([
 				var logic = function(){
 						var dataBE = {
 								table : [
-											{ id: 0 , abbreviation: "KPM", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
+											{ id: 0 , abbreviation: "KPM", state : "Positive", stateText:"David Vela -- 24.08.2019" } , // text? 
 											{ id: 1 , abbreviation: "ZBM", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
 											{ id: 2 , abbreviation: "PCQ", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
 											{ id: 3 , abbreviation: "PCP", state : "Neutral",  stateText:"David Vela -- " } 
@@ -156,7 +156,10 @@ sap.ui.define([
 											children:[ ], 
 											state:row.state,     
 											stateText:row.stateText,	
-											focused:true };
+											focused:true , 
+											texts:[]
+										};
+											
 							var oLane = {   id:row.id,					
 											icon:"",				
 											label:"",			 
