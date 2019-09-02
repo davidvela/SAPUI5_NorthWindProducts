@@ -86,22 +86,103 @@ sap.ui.define([
 							//{"id":"2","icon":"sap-icon://payment-approval","label":"InInvoice","position":2}]}
 			
 				
-				var data = {
+				var data1 = {
 					lanes:[ 
-							{id:"0", icon:"sap-icon://share-2",				label:"Published",			 position:0},
+							{id:"0", icon:"sap-icon://share-2",				label:"Published \n -- test 1234567890_1234567890",			 position:0},
 							{id:"1", icon:"sap-icon://employee-approvals",	label:"Aprobed",			 position:1},
 							{id:"2", icon:"sap-icon://process",				label:"QUAL Implementation", position:2},
 							{id:"3", icon:"sap-icon://approvals",			label:"PROD Implementation", position:3}
 						],
 					nodes: [	
 							{id:"0",lane:"0",title:"Published",    titleAbbreviation:"KPM", children:[1], state:"Positive",    stateText:"David Vela -- 24.08.2019", focused:true, texts:["David Vela","24.08.2019"]},
-							{id:"1",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[2,21], state:"Positive", stateText:"OKstatus", focused:true, 	texts:["Comment1","Comment2"]},
-							{id:"2",lane:"2",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Negative",    stateText:"Negative", focused:true, 	texts:["Rejected by David","Approved after changes "]},
-							{id:"21",lane:"2",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Planned",     stateText:"Planned text", focused:true, 	texts:["Comment1","Comment2"]},
+							{id:"1",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[2], state:"Positive",    stateText:"OKstatus", focused:true, 	texts:["Rejected by David 24.08","Approved by David 25.08 "]},
+							{id:"2",lane:"2",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[3], state:"Positive",    stateText:"OKstatus", focused:true, 	texts:["OK"]},
 							{id:"3",lane:"3",title:"PCP Imp",	   titleAbbreviation:"PCP", children:[],  state:"Neutral",     stateText:"Neutral",  focused:true, 	texts:["Comment1","Comment2"]}
 						] 	
 				};
-				this.getView().setModel(new JSONModel(data), "pflow");
+								
+				var data2 = {
+					lanes:[ 
+							{id:"0", icon:"sap-icon://share-2",				label:"Published ",			 position:0},
+							{id:"1", icon:"sap-icon://employee-approvals",	label:"Aprobed",			 position:1},
+							{id:"2", icon:"sap-icon://process",				label:"QUAL Implementation", position:2},
+							{id:"3", icon:"sap-icon://approvals",			label:"PROD Implementation", position:3}
+						],
+					nodes: [	
+							{id:"0",lane:"0",title:"Published",    titleAbbreviation:"KPM", children:[1], state:"Positive",     stateText:"David Vela -- 24.08.2019", focused:true, texts:["David Vela","24.08.2019"]},
+							{id:"1",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[2,4], state:"Negative", 	stateText:"Rejected", focused:true, 	texts:["Rejected 25.08","Comment2"]},
+							
+							{id:"2",lane:"0",title:"Published",    titleAbbreviation:"KPM", children:[3], state:"Positive",     stateText:"David Vela -- 24.08.2019", focused:true, texts:["David Vela","26.08.2019"]},
+							{id:"3",lane:"1",title:"ZBM Approval", titleAbbreviation:"ZBM", children:[4], state:"Positive", 	stateText:"OKstatus", focused:true, 	texts:["Approved 26.08","Comment2"]},
+							
+							{id:"4",lane:"2",title:"PCQ Imp",	   titleAbbreviation:"PCQ", children:[5], state:"Positive",     stateText:"Positive", focused:true, 	texts:["Approved after changes "]},
+							{id:"5",lane:"3",title:"PCP Imp",	   titleAbbreviation:"PCP", children:[],  state:"Planned",      stateText:"Neutral",  focused:true, 	texts:["Comment1","Comment2"]}
+						] 	
+				};
+				
+				var data3 = {
+					lanes:[ 
+							{id:"0", icon:"sap-icon://share-2",				label:"KPL Published ",			 position:0},
+							{id:"1", icon:"sap-icon://employee-approvals",	label:"ZBM Approval",			 position:1},
+							{id:"2", icon:"sap-icon://share-2",				label:"KPL Published `",			 position:2},
+							{id:"3", icon:"sap-icon://employee-approvals",	label:"ZBM Approval",			 position:3},
+							{id:"4", icon:"sap-icon://process",				label:"QUAL I`mplementation", position:4},
+							{id:"5", icon:"sap-icon://approvals",			label:"PROD Implementation", position:5}
+						],
+					nodes: [	
+							{id:"0",lane:"0",title:"A",  	titleAbbreviation:"KPM", children:[1], state:"Positive",     stateText:"David Vela -- 24.08.2019",	focused:true,	texts:["David Vela","24.08.2019"]},
+							{id:"1",lane:"1",title:"b",		titleAbbreviation:"ZBM", children:[2], state:"Negative", 	 stateText:"David Vela -- 24.08.2019",	focused:true, 	texts:"Rejected 25.08" },
+							{id:"2",lane:"2",title:"c",  	titleAbbreviation:"KPM", children:[3], state:"Positive",     stateText:"David Vela -- 25.08.2019",	focused:true,	texts:["David Vela","26.08.2019"]},
+							{id:"3",lane:"3",title:"d",		titleAbbreviation:"ZBM", children:[4], state:"Positive", 	 stateText:"David Vela -- 26.08",		focused:true, 	texts:""},
+							{id:"4",lane:"4",title:"e",		titleAbbreviation:"PCQ", children:[5], state:"Positive",     stateText:"David Vela -- 26.08",		focused:true, 	texts:["Approved after changes "]},
+							{id:"5",lane:"5",title:"f",		titleAbbreviation:"PCP", children:[],  state:"Planned",      stateText:"David Vela -- ",			focused:true, 	texts:["Comment1","Comment2"]}
+						] 	
+				};
+				var logic = function(){
+						var dataBE = {
+								table : [
+											{ id: 0 , abbreviation: "KPM", state : "Positive", stateText:"David Vela -- 24.08.2019" } , // text? 
+											{ id: 1 , abbreviation: "ZBM", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
+											{ id: 2 , abbreviation: "PCQ", state : "Positive", stateText:"David Vela -- 24.08.2019" } ,
+											{ id: 3 , abbreviation: "PCP", state : "Neutral",  stateText:"David Vela -- " } 
+										]};
+						var aNodes = []; var aLanes = []; 
+						for(var i in dataBE.table){
+							var row = dataBE.table[i]; 
+							var oNode = {	id:  row.id,  
+											lane: row.id, 
+											title:"", 	
+											titleAbbreviation:row.abbreviation,
+											children:[ ], 
+											state:row.state,     
+											stateText:row.stateText,	
+											focused:true , 
+											texts:[]
+										};
+											
+							var oLane = {   id:row.id,					
+											icon:"",				
+											label:"",			 
+											position:row.id,};
+											
+							switch (row.abbreviation) {
+								case "KPM": oLane.icon = "sap-icon://share-2"; oLane.label ="KPL Publication"; oNode.children.push(row.id+1);	break;
+								case "ZBM": oLane.icon = "sap-icon://employee-approvals"; oLane.label ="ZBM Approval"; 	oNode.children.push(row.id+1); break;
+								case "PCQ": oLane.icon = "sap-icon://process"; oLane.label ="QUAL Implementation"; 	oNode.children.push(row.id+1); break;
+								case "PCP": oLane.icon = "sap-icon://approvals"; oLane.label ="PROD Implementation"; 	break;
+								default: continue; 
+							}
+							aNodes.push(oNode );
+							aLanes.push(oLane );
+							
+						}
+						return { lanes:aLanes, nodes : aNodes };
+								
+				};
+				var data4 = logic(); 
+				
+				
+				this.getView().setModel(new JSONModel(data4), "pflow");
 
 			}, 
 			
